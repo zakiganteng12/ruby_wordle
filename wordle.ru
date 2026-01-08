@@ -1,6 +1,7 @@
 require 'json'
 
 data = File.read('words.json')
+check = JSON.parse(data).map(&:upcase)
 word = JSON.parse(data).sample.upcase
 
 # word = 'MOONS'
@@ -82,10 +83,13 @@ while exit == false
         puts ''
 
         if input.length != target.length
-            puts "Your guess must be #{target.length} letters long."
+            puts "\e[31mYour guess must be #{target.length} letters long..\e[0m \n"
         
+        elsif !check.include?(input)
+            puts "\e[31mYour guess is not a valid word.\e[0m \n"
+            
         elsif guesses.include?(input)
-            puts "You already guessed that!"
+            puts "\e[31mYou already guessed that!.\e[0m \n"
             
         else
             guesses[guesses.index(nil)] = input
@@ -93,7 +97,7 @@ while exit == false
         end
 
         keys.split('').each_with_index do |k, i|
-            if input.include?(k) && typed[i] == nil && input.length == target.length
+            if input.include?(k) && typed[i] == nil && input.length == target.length && check.include?(input) 
                 typed[i] = k
                 accept = true
             end
