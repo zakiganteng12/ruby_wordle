@@ -29,12 +29,6 @@ A command-line implementation of the popular Wordle word-guessing game, written 
 
 ## Usage
 
-### Windows
-Run the included batch file:
-```cmd
-wordle.bat
-```
-
 ### Any platform
 Run directly with Ruby:
 ```bash
